@@ -1,52 +1,65 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 
-	void CleaningConsole() noexcept;
-	void CleaningBuffor() noexcept;
-	void CleanAll() noexcept;
-	void AftCleanF() noexcept;
-	void AftCleanP() noexcept;
-	void InBetw() noexcept;
-	void TabSort() noexcept;
 
-	/* ------------------------- Inside Functions -------------------------- */
-	void CleaningBuffor() noexcept
+    // functions to use.
+	void CleaningConsole() noexcept , // Use to clean the console, (this is not cleaning the buffer!).
+		CleaningBuffor() noexcept ,  // Use to clean the buffer.
+		CleanAll() noexcept ,  //Use to clean both buffer and console.
+		AftCleanF(std::string title) noexcept , //Use to keep the console clean and to delete the buffer, for example after taking input u can use this before going into another function. //wip
+		AftCleanP(std::string title) noexcept , // Same as AftCleanF but without cleaning the buffer. //wip
+		InBetw() noexcept , // Use to add a visual devisor of content.
+		TabSort() noexcept; // wip
+
+
+
+
+	/********************************************************************************************************************************************/
+
+
+
+
+
+	std::string title = "Empty title";
+	double SpacesPerSide = 121 - title.length();
+	double SpaceCalc() 
 	{
-		//cleans the cin input buffor
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		//wip (Maybe change the whole idea, just devide and put around the title, problem appears when your title is even, gotta -0.5 and then generate.)
 	}
+	void CleaningBuffor() noexcept { std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); }
 	void CleaningConsole() noexcept
 	{
-		//cleans all inconsole symbols.
-#ifdef _WIN32
+	#ifdef _WIN32
 		system("cls");
-#else
+	#else
 		system("clear");
-#endif;
+	#endif;
 	}
-	void CleanAll() noexcept
-	{
-		//clean both buffor and console.
-		CleaningBuffor();
-		CleaningConsole();
-	}
-	/* ------------------------ Interface Algorithms ------------------------ */
-	void AftCleanF() noexcept
-	{
-		CleaningConsole();
-		std::cout
-			<< "+----------------------------------------------------------------------------------------------------------------------+"
-			<< std::endl;
+	void CleanAll() noexcept { CleaningBuffor(); CleaningConsole();}
+	void AftCleanF(std::string title) noexcept 
+	{ 
+	CleaningConsole(); 
+	std::cout
+		<< "+----------------------------------------------------------------------------------------------------------------------+"
+		<< "                                  "
+		<< SpacesPerSide
+		<< title
+		<< SpacesPerSide
+		<< std::endl;
 		CleaningBuffor();
 	}
-	void AftCleanP() noexcept
+	void AftCleanP(std::string title) noexcept
 	{
 		CleaningConsole();
+		
 		std::cout
 			<< "+----------------------------------------------------------------------------------------------------------------------+"
+			<< SpacesPerSide
+			<< title
+			<< SpacesPerSide
 			<< std::endl;
-
 	}
 	void InBetw() noexcept
 	{
@@ -58,5 +71,5 @@
 	}
 	void TabSort() noexcept
 	{
-
+		//wip (using vector)
 	}
